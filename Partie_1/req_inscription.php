@@ -35,7 +35,7 @@ try {
         $sql = $dbh->prepare("INSERT INTO users (email, password, nom, prenom, tel, website, sexe, birthdate, ville, taille, couleur, profilepic) "
                 . "VALUES (:email, :password, :nom, :prenom, :tel, :website, :sexe, :birthdate, :ville, :taille, :couleur, :profilepic)");
         $sql->bindValue(":email", $email);
-        $sql->bindValue(":password", md5($email));
+        $sql->bindValue(":password", md5($password));
 
         // de même, lier la valeur pour le mot de passe
         // lier la valeur pour le nom, attention le nom peut être nul, il faut alors lier avec NULL, ou DEFAULT
@@ -67,7 +67,7 @@ try {
         else $sql->bindValue(":profilepic", $profilepic);
 
         if($couleur=='') $sql->bindValue(":couleur", null);
-        else $sql->bindValue(":couleur", substr($couleur,1));
+        else $sql->bindValue(":couleur", substr($couleur,0));
 
         if($sexe != 'H' && $sexe!='F') $sql->bindValue(":sexe", null);
         else $sql->bindValue(":sexe", $sexe);
@@ -107,7 +107,7 @@ try {
         $dbh = null;
     }
 } catch (PDOException $e) {
-    print "Erreur !: " . $e->getMessage() . "<br/>";
+    print "<div class='PDOerreur'>Erreur !: " . $e->getMessage() . "</div>";
     $dbh = null;
     die();
 }
