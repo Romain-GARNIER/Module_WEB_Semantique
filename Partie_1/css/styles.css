@@ -151,3 +151,64 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
   padding: 1em;
   border-radius:4px;
 }
+
+
+
+.btn {
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  padding: 0.5em 1.2em;
+  background-color: buttonface;
+}
+
+.btn:hover{
+  cursor: pointer;
+}
+
+.btn-valider {
+    color: #ffffff;
+    background-color: #3498db;
+    border-radius: 5px;
+    margin: 0.5em 1em;
+}
+
+.btn-default {
+  color: white;
+  background-color: #1abc9c;
+  border: 1px solid #1abc9c;
+}
+
+.btn-default:hover{
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #1abc9c;
+  color: black;
+}
+
+form div{
+  margin: 1em 0;
+  line-height: 16px;
+}
+
+form input[type="text"],input[type="password"]{
+  float: right;
+  width: 13em;
+  border: none;
+  font-size: 1em;
+  border-bottom: 1px solid #3498db;
+}
+
+input[type="submit"]{
+    color: #ffffff;
+    background-color: #2ecc71;
+    border : 1px solid #2ecc71;
+    padding: 0.5em 1.2em;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-top: 2em;
+}
+
+input[type="submit"]:hover{
+  cursor: pointer;
+  background-color: #27ae60;
+}
