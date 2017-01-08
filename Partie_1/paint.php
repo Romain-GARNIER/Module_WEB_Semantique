@@ -51,13 +51,13 @@ if(!isset($_SESSION['prenom'])) {
                 console.log("start");
                 // crér un nouvel objet qui représente une commande de type "start", avec la position, la couleur
                 var command = {};
-                command.command="start";
+                /*command.command="start";
                 command.x=e.x;
         				command.y=e.y;
-        				command.size = size/2;
-        				command.color = color;
+        				command.size = size;
+        				command.color = color;*/
                 //c'est équivalent à:
-                //command = {"command":"start", "x": e.x, "y":e.y,"size":size/2,"color":color};
+                command = {"command":"start", "x": e.x, "y":e.y,"size":size,"color":color};
 
                 // Ce genre d'objet Javascript simple est nommé JSON. Pour apprendre ce qu'est le JSON, c.f. http://blog.xebia.fr/2008/05/29/introduction-a-json/
 
@@ -67,7 +67,7 @@ if(!isset($_SESSION['prenom'])) {
                 // ici, dessinez un cercle de la bonne couleur, de la bonne taille, et au bon endroit.
                 context.beginPath();
         				context.fillStyle = color;
-        				context.arc(e.x, e.y, size / 2, 0, 2 * Math.PI);
+        				context.arc(e.x, e.y, size, 0, 2 * Math.PI);
         				context.fill();
         				context.closePath();
                 isDrawing = true;
@@ -82,14 +82,12 @@ if(!isset($_SESSION['prenom'])) {
                 if(isDrawing) {
                     // ici, créer un nouvel objet qui représente une commande de type "draw", avec la position, et l'ajouter à la liste des commandes.
                     var command = {};
-          					command.command="draw";
-          					command.x=e.x;
-          					command.y=e.y;
+          					command = {"command":"draw", "x": e.x, "y":e.y,"size":size,"color":color};
           					drawingCommands.push(command);
                     // ici, dessinez un cercle de la bonne couleur, de la bonne taille, et au bon endroit.
                     context.beginPath();
           					context.fillStyle = color;
-          					context.arc(e.x, e.y, size / 2, 0, 2 * Math.PI);
+          					context.arc(e.x, e.y, size, 0, 2 * Math.PI);
           					context.fill();
           					context.closePath();
                 }
