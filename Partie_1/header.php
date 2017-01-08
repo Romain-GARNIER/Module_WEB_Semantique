@@ -24,6 +24,18 @@ if(!empty($_SESSION)){
 	<body>
 
 
+		<?php
+
+		if(!empty($_GET)){
+		    if(!empty($_GET["erreur"])){
+		        $strHTML = "<div style='background-color: red;padding: 0.5em 1em 1em;'>".
+		            "<h1>ERROR : ".$_GET["erreur"]."</h1>".
+		            "</div>";
+		        echo $strHTML;
+		    }
+		}
+		?>
+
 		<?php if(!$connecter) { ?>
 		<form class="block-accueil" action="req_login.php" method="post">
       <div><label for="email">Identifiant : </label><input type="text" name="email" value=""></div>
@@ -41,9 +53,6 @@ if(!empty($_SESSION)){
 				echo "</div>";
 		 	}
 			?>
-
-
-
 
 	</body>
 </html>

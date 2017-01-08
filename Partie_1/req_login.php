@@ -5,16 +5,21 @@ require 'connectionPDO.php';
 $email=$_POST['email'];
 $password=$_POST['mdp'];
 
-try
+$sql = $dbh->prepare("SELECT * FROM users WHERE email= :email AND password= :password");
+$sql->bindValue(":email", $email);
+$sql->bindValue(":password", md5($password));
+if (!$sql->execute())
 {
-  $sql = $dbh->prepare("SELECT * FROM users WHERE email= :email AND password= :password");
-	$sql->bindValue(":email", $email);
-	$sql->bindValue(":password", md5($password));
-	$sql->execute();
-  if ($sql->rowCount() < 1)
+	echo "<div class='PDOerreur'><h2>PDO::errorInfo():</h2>";
+	$err = $sql->errorInfo();
+	print_r($err);
+  echo "</div>";
+	$dbh = null;
+}else {
+	if ($sql->rowCount() < 1)
 	{
-		header('Location: main.php?error='.urlencode("connexion"));
-  }
+		header('Location: main.php?erreur='.urlencode("login ou mot de passe incorrecte"));
+	}
 	else
 	{
 		session_start();
@@ -27,12 +32,5 @@ try
 		$_SESSION['profilepic'] = $ligne['profilepic'];
 		header('Location: main.php');
 	}
-	$dbh = null;
-}
-catch (PDOException $e)
-{
-    print "<div class='PDOerreur'>Erreur !: " . $e->getMessage() . "<br/>";
-    $dbh = null;
-    die();
 }
 ?>
