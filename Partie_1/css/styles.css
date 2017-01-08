@@ -145,3 +145,9 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
     -o-box-shadow: 0 0 10px 5px #356b0b inset;
 
 }
+
+.PDOerreur {
+  background-color: red;
+  padding: 1em;
+  border-radius:4px;
+}
